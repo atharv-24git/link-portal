@@ -12,21 +12,23 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-    body {
-      background: #fefdfc;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      line-height: 1.6;
-    }
+body {
+  background: #fefdfb;
+  color: #3a3a3a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
+
 .container {
   max-width: 500px;
-  width: 100%;
-  background: #fffaf5; /* soft cream */
-  border-radius: 60px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  width: 110%;
+  background: #fefdfb;
+  border-radius: 40px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
   padding: 32px;
   text-align: center;
   position: relative;
@@ -37,10 +39,10 @@
   text-align: right;
   margin-bottom: -40px;
   font-size: 28px;
-  cursor: ;
+  cursor: pointer;
   display: flex;
   justify-content: flex-end;
-  color: #c69c7b; /* warm icon tone */
+  color: #d6a77a;
 }
 
 .sidebar-overlay {
@@ -49,7 +51,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.1);
   display: none;
   z-index: 997;
 }
@@ -64,12 +66,12 @@
   right: -280px;
   width: 260px;
   height: 100%;
-  background: #fff7ef; /* soft pastel beige */
+  background: #fff4eb;
   box-shadow: -4px 0 18px rgba(0, 0, 0, 0.05);
   padding: 30px 20px;
   transition: right 0.4s ease;
   z-index: 998;
-  border-left: 1px solid #f0e8e0;
+  border-left: 1px solid #f1e9e0;
 }
 
 .sidebar.active {
@@ -79,23 +81,23 @@
 .sidebar h2 {
   font-size: 20px;
   margin-bottom: 20px;
-  color: #5a4d44; /* soft chocolate */
+  color: #6a564a;
 }
 
 .sidebar a {
   display: block;
   margin-bottom: 14px;
   text-decoration: none;
-  color: #5a4d44;
+  color: #6a564a;
   font-weight: 600;
-  background: #fbeee4; /* warm almond */
+  background: #fef0e6;
   padding: 10px 14px;
   border-radius: 14px;
   transition: all 0.3s ease;
 }
 
 .sidebar a:hover {
-  background: #f1e3d7;
+  background: #f4e3db;
   transform: translateX(5px);
 }
 
@@ -107,80 +109,97 @@ h1 {
 
 p.description {
   font-size: 16px;
-  color: #7a6d64; /* gentle coffee tone */
+  color: #796e67;
   margin-bottom: 28px;
 }
-    .section-title {
-      margin-top: 36px;
-      font-size: 20px;
-      color: #555;
-      font-weight: 600;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 10px;
-    }
-    .link-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 18px;
-    }
-    .link-item {
-      background: #f9f4f1;
-      color: #3a3a3a;
-      padding: 14px 20px;
-      border-radius: 16px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid #eadfd9;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-    }
-    .link-item:hover {
-      background: #f2eae5;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-    }
-    footer {
-      margin-top: 32px;
-      font-size: 13px;
-      color: #aaa;
-    }
-    #downloadsPage {
-      max-width: 500px;
-      width: 100%;
-      background: #fffdfa;
-      border-radius: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      padding: 32px;
-      text-align: center;
-      display: none;
-    }
-    #downloadsPage button {
-      margin-top: 24px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 12px;
-      background: #eee;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    @media (max-width: 480px) {
-      .container {
-        padding: 24px 20px;
-        border-radius: 18px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      .section-title {
-        font-size: 18px;
-      }
-      .link-item {
-        padding: 12px 16px;
-        font-size: 15px;
-      }
-    }
-  </style>
+
+.section-title {
+  margin-top: 36px;
+  font-size: 20px;
+  color: #555;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.link-item {
+  background: #fdf6f2;
+  color: #444;
+  padding: 14px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #f0e4dd;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.link-item:hover {
+  background: #f3e8e2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+footer {
+  margin-top: 32px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+#downloadsPage {
+  max-width: 500px;
+  width: 100%;
+  background: #fffdfa;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  text-align: center;
+  display: none;
+}
+
+#downloadsPage button {
+  margin-top: 24px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #f3ece8;
+  font-weight: 600;
+  cursor: pointer;
+  color: #4a4a4a;
+  transition: background 0.3s ease;
+}
+
+#downloadsPage button:hover {
+  background: #e8dfda;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .link-item {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -229,6 +248,15 @@ p.description {
   <a href="https://x.com/AtharvNova?t=adBaPRxztcBhaVAyEtWhWg&s=09" class="link-item" target="_blank">
     🐦 Twitter/X – Atharv Roy
   </a>
+  <a href="https://www.reddit.com/u/Still-Air1/s/f6SaBkZw2w" class="link-item" target="_blank">
+    👽 Reddit – Atharv
+  </a>
+  <a href="https://i.delta.chat/#D1179C4602AF1FF5D72026F7321098AB84A20CA2&a=d16icplez%40arcanechat.me&n=Atharv%20Roy&i=qst0woUWy4XnkyOaog1lBaHa&s=vZaap3gUSPrxf_xiVYYR29Lq" class="link-item" target="_blank">
+    📥 DeltaChat – Atharv Roy
+  </a>
+  <a href="https://ngl.link/sayhii40344" class="link-item" target="_blank">
+    💌 NGL – Atharv
+  </a>
 
   <!-- Professional / Content -->
   <a href="https://www.linkedin.com/in/atharv-roy-60532936b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="link-item" target="_blank">
@@ -237,8 +265,8 @@ p.description {
   <a href="https://youtube.com/@atharv-v1r" class="link-item" target="_blank">
     📺 YouTube – Atharv
   </a>
-</div>
 
+</div>
 
 <div style="display: none;">
 
