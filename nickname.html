@@ -5,67 +5,92 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0" />
   <title>🔐 Access Portal</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      background: #101820;
-      color: #f1f1f1;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .wrapperX9 {
-      background: #1c1f26;
-      padding: 30px 26px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-    .heading3Z {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 18px;
-      color: #e5e7eb;
-    }
-    .input72 {
-      width: 100%;
-      padding: 12px;
-      font-size: 15px;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 18px;
-      background: #f9fafb;
-      color: #111827;
-    }
-    .btnX3S {
-      width: 100%;
-      padding: 12px;
-      font-size: 15px;
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .btnX3S:hover {
-      background-color: #2563eb;
-    }
-    .msgB99 {
-      margin-top: 16px;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-  </style>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f8fafc;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-attachment: fixed;
+  }
+
+  .wrapperX9 {
+    background: rgba(30, 41, 59, 0.85);
+    padding: 32px 28px;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .heading3Z {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    color: #e0f2fe;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  }
+
+  .input72 {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    background: #f1f5f9;
+    color: #0f172a;
+    transition: all 0.25s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .input72:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px #38bdf8;
+  }
+
+  .btnX3S {
+    width: 100%;
+    padding: 13px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 18px rgba(6, 182, 212, 0.4);
+  }
+
+  .btnX3S:hover {
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
+    box-shadow: 0 7px 22px rgba(6, 182, 212, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .msgB99 {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  }
+</style>
 </head>
 <body>
 
