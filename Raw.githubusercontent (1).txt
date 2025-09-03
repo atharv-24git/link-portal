@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atharv Roy | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<style>
+/* ========== CSS Variables ========== */
+:root {
+  /* Light theme - Soft cute colors */
+  --bg-primary: #fef7ff;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #3a3a3a;
+  --text-secondary: #796e67;
+  --text-accent: #8a4fff;
+  --border-color: #f0e4dd;
+  --shadow: 0 12px 30px rgba(138, 79, 255, 0.08);
+  --shadow-hover: 0 16px 40px rgba(138, 79, 255, 0.12);
+  --gradient-primary: linear-gradient(135deg, #8a4fff 0%, #c64fff 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --radius: 20px;
+}
+
+/* Dark theme */
+.dark-theme {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #1e2a47;
+  --text-primary: #f0f0f0;
+  --text-secondary: #c2c2c2;
+  --text-accent: #a685ff;
+  --border-color: #2a3b5a;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.3);
+  --gradient-primary: linear-gradient(135deg, #a685ff 0%, #d96cff 100%);
+}
+
+/* ========== Base Styles ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: var(--transition);
+}
+
+/* ========== Layout Components ========== */
+.container {
+  max-width: 580px;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition);
+  margin-bottom: 25px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.profile-img-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.default-img {
+  font-size: 50px;
+  color: white;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+/* ========== Typography ========== */
+h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 18px;
+  color: var(--text-accent);
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ========== Interactive Elements ========== */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.link-item {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 16px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.link-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.link-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--text-accent);
+}
+
+.link-item:hover:before {
+  left: 0;
+}
+
+.link-icon {
+  font-size: 20px;
+  width: 24px;
+  z-index: 1;
+}
+
+.link-text {
+  flex: 1;
+  text-align: left;
+  z-index: 1;
+}
+
+/* ========== Navigation & Sidebar ========== */
+.camera-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-accent);
+  transition: var(--transition);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.camera-icon:hover {
+  transform: rotate(15deg);
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 997;
+  backdrop-filter: blur(4px);
+}
+
+.sidebar-overlay.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background: var(--bg-card);
+  box-shadow: -4px 0 18px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-close {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  border-radius: 12px;
+  transition: var(--transition);
+  background: var(--bg-secondary);
+}
+
+.sidebar-link:hover {
+  background: var(--gradient-primary);
+  color: white;
+  transform: translateX(5px);
+}
+
+/* ========== Buttons & Toggles ========== */
+.toggle-theme {
+  margin-top: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  color: var(--text-primary);
+}
+
+.toggle-theme:hover {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-hover);
+}
+
+.back-button {
+  margin-top: 24px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  color: var(--text-primary);
+}
+
+.back-button:hover {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-hover);
+}
+
+/* ========== Footer ========== */
+footer {
+  margin-top: 30px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes blink {
+  50% { opacity: 0.6; }
+}
+
+.dot-live {
+  height: 12px;
+  width: 12px;
+  background: #ff5e7d;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  animation: blink 1.4s infinite;
+}
+
+/* ========== Splide Carousel ========== */
+.splide {
+  margin: 25px 0;
+}
+
+.splide__slide {
+  display: flex;
+  justify-content: center;
+}
+
+.splide__pagination {
+  bottom: -20px;
+}
+
+.splide__pagination__page {
+  background: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.splide__pagination__page.is-active {
+  background: var(--text-accent);
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ========== Stats Cards ========== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-accent);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ========== Toast Notification ========== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: var(--shadow-hover);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  animation: slideIn 0.5s ease;
+}
+
+/* ========== Password Modal ========== */
+.password-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.password-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-hover);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+  color: var(--text-accent);
+}
+
+.password-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--border-color);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .profile-img-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .link-item {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  
+  .sidebar {
+    width: 280px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+  }
+}
+
+/* ========== Utility Classes ========== */
+.animate-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== Custom Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-primary);
+}
+
+/* ========== Upload Button ========== */
+.upload-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: var(--transition);
+}
+
+.upload-btn:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-message">Operation completed</span>
+  </div>
+
+  <!-- Password Modal -->
+  <div class="password-modal" id="passwordModal">
+    <div class="modal-content">
+      <h3><i class="fas fa-lock"></i> Enter Password</h3>
+      <p>Please enter the password to upload a profile photo.</p>
+      <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+      <div class="modal-buttons">
+        <button class="modal-btn btn-primary" onclick="checkPassword()">Submit</button>
+        <button class="modal-btn btn-secondary" onclick="closePasswordModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Navigation</h2>
+      <div class="sidebar-close" onclick="closeSidebar()">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    
+    <div class="sidebar-nav">
+      <a href="#" class="sidebar-link" onclick="showSection('mainContainer')">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="sidebar-link" onclick="showSection('downloadsPage')">
+        <i class="fas fa-download"></i>
+        <span>Downloads</span>
+      </a>
+      <a href="#" class="sidebar-link" onclick="showSection('pagesSection')">
+        <i class="fas fa-file"></i>
+        <span>Pages</span>
+      </a>
+      <a href="#" class="sidebar-link" onclick="showSection('socialSection')">
+        <i class="fas fa-share-alt"></i>
+        <span>Social Presence</span>
+      </a>
+      <a href="mailto:royatharv552006@gmail.com" class="sidebar-link">
+        <i class="fas fa-envelope"></i>
+        <span>Contact Me</span>
+      </a>
+    </div>
+    
+    <div style="margin-top: auto; padding: 20px 0;">
+      <button class="toggle-theme" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+        <span>Toggle Theme</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container" id="mainContainer">
+    <div class="header">
+      <div class="camera-icon" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="camera-icon" onclick="toggleTheme()">
+        <i class="fas fa-palette"></i>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-img-container">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?i
+xlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=
+crop&w=200&q=80" alt="Atharv Roy" class="profile-img" id="profileImage">
+        <div class="default-img" id="defaultImage" style="display: none;">
+          <i class="fas fa-user"></i>
+        </div>
+        <button class="upload-btn" onclick="openPasswordModal()">
+          <i class="fas fa-camera"></i>
+        </button>
+        <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+      </div>
+      
+      <div class="profile-info">
+        <h1>Atharv Roy</h1>
+        <p class="subtitle">Developer & Creative Designer crafting digital experiences with passion and purpose</p>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-container">
+      <div class="stat-card animate-in">
+        <div class="stat-value">12+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card animate-in delay-1">
+        <div class="stat-value">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card animate-in delay-2">
+        <div class="stat-value">24</div>
+        <div class="stat-label">Clients</div>
+      </div>
+      <div class="stat-card animate-in delay-3">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
+
+    <!-- Social Media Carousel -->
+    <div class="splide" aria-label="Social Media Links">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <a href="https://www.instagram.com/___atharv_ava_?igsh=ZXBib2x3bmtranVx" class="link-item" target="_blank">
+              <div class="link-icon"><i class="fab fa-instagram"></i></div>
+              <div class="link-text">Instagram – 𝐴𝑡ℎ𝑎𝑟𝑣˚₊·— ͟͞͞♡</div>
+            </a>
+          </li>
+          <li class="splide__slide">
+            <a href="https://www.facebook.com/atharv.siddhu" class="link-item" target="_blank">
+              <div class="link-icon"><i class="fab fa-facebook"></i></div>
+              <div class="link-text">Facebook – Atharv Siddhu</div>
+            </a>
+          </li>
+          <li class="splide__slide">
+            <a href="https://www.linkedin.com/in/atharv-roy-60532936b?utm_source
+=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class=
+"link-item" target="_blank">
+              <div class="link-icon"><i class="fab fa-linkedin"></i></div>
+              <div class="link-text">LinkedIn – Atharv Roy</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <i class="fas fa-link"></i>
+      <span>Quick Links</span>
+    </div>
+
+    <div class="link-list">
+      <a href="nickname.html" class="link-item animate-in delay-1" target="_blank">
+        <div class="link-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="link-text">Daily – Smart Nickname</div>
+      </a>
+      
+      <a href="mailto:royatharv552006@gmail.com" class="link-item animate-in delay-2">
+        <div class="link-icon"><i class="fas fa-envelope"></i></div>
+        <div class="link-text">Email – Atharv Roy</div>
+      </a>
+      
+      <a href="https://youtube.com/@atharv-v1r" class="link-item animate-in delay-3" target="_blank">
+        <div class="link-icon"><i class="fab fa-youtube"></i></div>
+        <div class="link-text">YouTube – Atharv</div>
+      </a>
+    </div>
+
+    <button class="toggle-theme" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i>
+      <span>Toggle Dark Mode</span>
+    </button>
+
+    <footer>
+      &copy; 2025 Atharv Roy • Made with <i class="fas fa-heart" style="color: #ff5e7d;"></i> and <i class="fas fa-coffee"></i>
+    </footer>
+  </div>
+
+  <!-- Downloads Page -->
+  <div id="downloadsPage" class="container" style="display: none;">
+    <h2><i class="fas fa-download"></i> Downloads</h2>
+    <p class="subtitle">Useful tools and resources</p>
+
+    <div class="section-title">
+      <i class="fas fa-music"></i>
+      <span>Music Downloaders</span>
+    </div>
+    <div class="link-list">
+      <a href="https://ymusic.io" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-play-circle"></i></div>
+        <div class="link-text">YMusic – YouTube Music</div>
+      </a>
+      <a href="https://spoti.plus" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-spotify"></i></div>
+        <div class="link-text">SpotiPlus – Spotify APK</div>
+      </a>
+    </div>
+
+    <div class="section-title">
+      <i class="fas fa-video"></i>
+      <span>Video Downloaders</span>
+    </div>
+    <div class="link-list">
+      <a href="https://www.y2mate.is/" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-youtube"></i></div>
+        <div class="link-text">Y2Mate – YouTube Downloader</div>
+      </a>
+      <a href="https://www.snaptube.com/" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-download"></i></div>
+        <div class="link-text">SnapTube – Video & Music</div>
+      </a>
+    </div>
+
+    <div class="section-title">
+      <i class="fas fa-tools"></i>
+      <span>Creative Tools</span>
+    </div>
+    <div class="link-list">
+      <a href="https://remove.bg/" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-image"></i></div>
+        <div class="link-text">Remove.bg – Background Remover</div>
+      </a>
+      <a href="https://photopea.com/" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-edit"></i></div>
+        <div class="link-text">Photopea – Photo Editor</div>
+      </a>
+    </div>
+
+    <button class="back-button" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </button>
+  </div>
+
+  <!-- Pages Section -->
+  <div id="pagesSection" class="container" style="display: none;">
+    <h2><i class="fas fa-file"></i> Pages</h2>
+    <p class="subtitle">Explore my digital presence</p>
+
+    <div class="link-list">
+      <a href="https://yourdomain.com/about" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-user"></i></div>
+        <div class="link-text">About Me – Who I Am</div>
+      </a>
+      <a href="https://yourdomain.com/cv" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="link-text">Resume/CV – Download My Profile</div>
+      </a>
+      <a href="https://bit.ly/atharv-24" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="link-text">Projects – Things I've Built</div>
+      </a>
+      <a href="https://yourdomain.com/certifications" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-certificate"></i></div>
+        <div class="link-text">Certifications – Courses & Skills</div>
+      </a>
+      <a href="https://yourdomain.com/contact" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fas fa-envelope"></i></div>
+        <div class="link-text">Contact – Let's Connect</div>
+      </a>
+    </div>
+
+    <button class="back-button" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </button>
+  </div>
+
+  <!-- Social Section -->
+  <div id="socialSection" class="container" style="display: none;">
+    <h2><i class="fas fa-share-alt"></i> Social Presence</h2>
+    <p class="subtitle">Connect with me across platforms</p>
+
+    <div class="link-list">
+      <a href="https://www.instagram.com/___atharv_ava_?igsh=ZXBib2x3bmtranVx" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-instagram"></i></div>
+        <div class="link-text">Instagram – 𝐴𝑡ℎ𝑎𝑟𝑣˚₊·— ͟͞͞♡</div>
+      </a>
+      <a href="https://www.facebook.com/atharv.siddhu" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-facebook"></i></div>
+        <div class="link-text">Facebook – Atharv Siddhu</div>
+      </a>
+      <a href="https://www.snapchat.com/add/atharvjh?share_id=Xcs-L9hCN-E&locale=en-IN" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-snapchat-ghost"></i></div>
+        <div class="link-text">Snapchat – Atharv Ava</div>
+      </a>
+      <a href="https://pin.it/2gCqx79Mc" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-pinterest"></i></div>
+        <div class="link-text">Pinterest – ElysioX</div>
+      </a>
+      <a href="https://x.com/AtharvNova?t=adBaPRxztcBhaVAyEtWhWg&s=09" class="link-item" target="_blank">
+        <div class="link-icon"><i class="fab fa-twitter"></i></div>
+        <div class="link-text">Twitter/X – Atharv Roy</div>
+      </a>
+    </div>
+
+    <button class="back-button" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <script>
+    // Initialize Splide carousel
+    document.addEventListener('DOMContentLoaded', function() {
+      new Splide('.splide', {
+        type: 'loop',
+        perPage: 1,
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        arrows: false,
+        pagination: true
+      }).mount();
+      
+      // Check if profile image exists
+      checkProfileImage();
+    });
+
+    // Sidebar functions
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+
+    function showSection(sectionId) {
+      closeSidebar();
+      const sections = ['mainContainer', 'downloadsPage', 'pagesSection', 'socialSection'];
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.display = (id === sectionId) ? 'block' : 'none';
+        }
+      });
+      
+      // Scroll to top when changing sections
+      window.scrollTo(0, 0);
+      
+      // Show toast notification
+      showToast('Section changed successfully');
+    }
+
+    function goBack() {
+      showSection('mainContainer');
+    }
+
+    // Dark Mode Toggle with Persistent Save
+    const THEME_KEY = 'preferred-theme';
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+      
+      // Update icon
+      const themeIcons = document.querySelectorAll('.toggle-theme i');
+      themeIcons.forEach(icon => {
+        if (isDark) {
+          icon.className = 'fas fa-sun';
+        } else {
+          icon.className = 'fas fa-moon';
+        }
+      });
+      
+      showToast(isDark ? 'Dark mode enabled' : 'Light mode enabled');
+    }
+
+    // Apply theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem(THEME_KEY);
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        const themeIcons = document.querySelectorAll('.toggle-theme i');
+        themeIcons.forEach(icon => {
+          icon.className = 'fas fa-sun';
+        });
+      }
+      
+      // Add animation classes to elements
+      const animateElements = document.querySelectorAll('.animate-in');
+      animateElements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+
+    // Toast notification function
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Swipe gestures for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Left swipe - close sidebar if open
+        if (document.getElementById('sidebar').classList.contains('active')) {
+          closeSidebar();
+        }
+      }
+      
+      if (touchEndX > touchStartX + swipeThreshold) {
+        // Right swipe - open sidebar if closed
+        if (!document.getElementById('sidebar').classList.contains('active')) {
+          toggleSidebar();
+        }
+      }
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // ESC key to close sidebar
+      if (e.key === 'Escape' && document.getElementById('sidebar').classList.contains('active')) {
+        closeSidebar();
+      }
+      
+      // D key to toggle dark mode
+      if (e.key === 'd' || e.key === 'D') {
+        toggleTheme();
+      }
+    });
+    
+    // Profile image functions
+    function checkProfileImage() {
+      const profileImg = document.getElementById('profileImage');
+      const defaultImg = document.getElementById('defaultImage');
+      
+      // Check if image loads successfully
+      profileImg.onerror = function() {
+        profileImg.style.display = 'none';
+        defaultImg.style.display = 'flex';
+      };
+      
+      // Check if image source is valid
+      if (!profileImg.src || profileImg.src === window.location.href) {
+        profileImg.style.display = 'none';
+        defaultImg.style.display = 'flex';
+      }
+    }
+    
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const profileImg = document.getElementById('profileImage');
+          const defaultImg = document.getElementById('defaultImage');
+          
+          profileImg.src = e.target.result;
+          profileImg.style.display = 'block';
+          defaultImg.style.display = 'none';
+          
+          // Save to localStorage
+          localStorage.setItem('profileImage', e.target.result);
+          
+          showToast('Profile picture updated!');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    
+    // Load saved profile image if exists
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedImage = localStorage.getItem('profileImage');
+      if (savedImage) {
+        const profileImg = document.getElementById('profileImage');
+        const defaultImg = document.getElementById('defaultImage');
+        
+        profileImg.src = savedImage;
+        profileImg.style.display = 'block';
+        defaultImg.style.display = 'none';
+      }
+    });
+    
+    // Password protection for photo upload
+    const CORRECT_PASSWORD = "31012011"; // Change this to your desired password
+    
+    function openPasswordModal() {
+      document.getElementById('passwordModal').classList.add('show');
+      document.getElementById('passwordInput').focus();
+    }
+    
+    function closePasswordModal() {
+      document.getElementById('passwordModal').classList.remove('show');
+      document.getElementById('passwordInput').value = '';
+    }
+    
+    function checkPassword() {
+      const inputPassword = document.getElementById('passwordInput').value;
+      
+      if (inputPassword === CORRECT_PASSWORD) {
+        closePasswordModal();
+        document.getElementById('imageUpload').click();
+      } else {
+        showToast('Incorrect password. Try again.');
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    }
+    
+    // Allow pressing Enter to submit password
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
