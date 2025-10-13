@@ -108,10 +108,51 @@ body {
 </div>
 
 <script>
-// Redirect to another page after 2 seconds
-setTimeout(() => {
-    window.location.href = "bookdex.html"; // Change this to your target HTML page
-}, 2000); // 2000ms = 2 seconds
+let redirected = false;
+let redirectTimeout;
+let isTouching = false;
+
+// Function to redirect
+const redirect = () => {
+    if (!redirected && !isTouching) {
+        redirected = true;
+        window.location.href = "bookdex.html"; // target page
+    }
+};
+
+// Start countdown only if not touching
+const startRedirectTimer = () => {
+    clearTimeout(redirectTimeout);
+    if (!isTouching) {
+        redirectTimeout = setTimeout(redirect, 3500);
+    }
+};
+
+// Pause redirect if touch starts
+window.addEventListener('touchstart', () => {
+    isTouching = true;
+    clearTimeout(redirectTimeout);
+});
+
+// Resume countdown when touch ends
+window.addEventListener('touchend', () => {
+    isTouching = false;
+    startRedirectTimer();
+});
+
+// Same for mouse users
+window.addEventListener('mousedown', () => {
+    isTouching = true;
+    clearTimeout(redirectTimeout);
+});
+
+window.addEventListener('mouseup', () => {
+    isTouching = false;
+    startRedirectTimer();
+});
+
+// Start initial countdown
+startRedirectTimer();
 </script>
 
 </body>
