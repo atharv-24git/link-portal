@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Moments — by Atharv</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ====================================================== */
+/* ====================== Base Styles ================== */
+/* ====================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #fdfbfb 0%, #f5f7fa 100%);
+    color: #4a4a4a;
+    line-height: 1.7;
+    min-height: 100vh;
+    transition: all 0.4s ease;
+    position: relative;
+    font-family: 'Crimson Text', serif;
+}
+
+/* ====================================================== */
+/* ===================== Sidebar Styles ================= */
+/* ====================================================== */
+.sidebar {
+    width: 320px;
+    background: linear-gradient(160deg, #fceabb 0%, #f8b195 100%);
+    color: #2c3e50;
+    padding: 2.5rem 2rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.05);
+    z-index: 100;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-100%);
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar.visible {
+    transform: translateX(0);
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.sidebar-header h1 {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-header p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* Book List */
+.book-list {
+    margin-top: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Individual Book Item */
+.book-item {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+}
+
+.book-item:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateX(6px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.book-item.active {
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Book Text */
+.book-item h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.book-item p {
+    font-size: 0.88rem;
+    opacity: 0.85;
+    font-weight: 300;
+}
+
+.book-item .book-excerpt {
+    font-size: 0.82rem;
+    margin-top: 0.6rem;
+    font-style: italic;
+    opacity: 0.75;
+    border-left: 2px solid rgba(44,62,80,0.3);
+    padding-left: 0.7rem;
+    line-height: 1.5;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.about-btn,
+.theme-toggle {
+    width: 100%;
+    padding: 0.9rem;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    font-size: 0.92rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.about-btn:hover,
+.theme-toggle:hover {
+    background: rgba(255,255,255,0.28);
+    transform: translateY(-2px);
+}
+
+/* Sidebar Trigger Button */
+.sidebar-trigger-btn {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #2c3e50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    transition: all 0.4s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar-trigger-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: linear-gradient(135deg, #fed6e3 0%, #a8edea 100%);
+}
+
+.sidebar-trigger-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ====================================================== */
+/* ==================== Main Content =================== */
+/* ====================================================== */
+.main-content {
+    padding: 4rem 6rem;
+    max-width: 950px;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+    background: #fdfbfb;
+    border-radius: 15px;
+}
+
+/* Chapter Title */
+.chapter-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.chapter-title h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #2c3e50;
+    font-family: 'Georgia', serif;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-title .subtitle {
+    font-size: 1.3rem;
+    color: #7f8c8d;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Chapter Content */
+.chapter-content {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.chapter-content p {
+    margin-bottom: 1.8rem;
+    text-align: justify;
+}
+
+.chapter-content h3 {
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(44, 62, 80, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+/* Quote Style */
+.quote {
+    border-left: 4px solid #bdc3c7;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    font-style: italic;
+    color: #555;
+    background: rgba(189, 195, 199, 0.1);
+    border-radius: 0 12px 12px 0;
+    font-size: 1.3rem;
+    line-height: 1.6;
+}
+
+/* ====================================================== */
+/* ==================== Soft Highlights ================= */
+/* ====================================================== */
+.highlight-pink,
+.highlight-blue,
+.highlight-yellow,
+.highlight-green {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 3px 6px;
+    transition: background 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.highlight-pink { background: rgba(255, 182, 193, 0.25); }
+.highlight-pink:hover { background: rgba(255, 182, 193, 0.35); }
+
+.highlight-blue { background: rgba(173, 216, 230, 0.25); }
+.highlight-blue:hover { background: rgba(173, 216, 230, 0.35); }
+
+.highlight-yellow { background: rgba(255, 255, 153, 0.25); }
+.highlight-yellow:hover { background: rgba(255, 255, 153, 0.35); }
+
+.highlight-green { background: rgba(144, 238, 144, 0.25); }
+.highlight-green:hover { background: rgba(144, 238, 144, 0.35); }
+
+/* ====================================================== */
+/* ==================== Moral Section ================== */
+/* ====================================================== */
+.moral-section {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 4rem 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.moral-section h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.moral-content {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #5a6c7d;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.moral-signature {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* ====================================================== */
+/* ================= Reading Progress ================== */
+/* ====================================================== */
+.reading-progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: rgba(189, 195, 199, 0.3);
+    z-index: 1000;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* ====================================================== */
+/* ==================== About Modal ==================== */
+/* ====================================================== */
+.about-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.about-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.about-content {
+    background: linear-gradient(135deg, #fdfbfb 0%, #f5f7fa 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 650px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.about-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.8rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: all 0.3s ease;
+}
+
+.about-close:hover {
+    color: #2c3e50;
+    transform: scale(1.1);
+}
+
+.about-content h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.2rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-size: 1.15rem;
+}
+
+.about-signature {
+    text-align: right;
+    margin-top: 2.5rem;
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* Modal Social Links */
+#aboutModal .about-modal-content {
+    background: #fff;
+    color: #333;
+    max-width: 350px;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    margin: 10% auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+#aboutModal .about-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#aboutModal .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+#aboutModal .social-links li {
+    margin: 0.5rem 0;
+}
+
+#aboutModal .social-links a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#aboutModal .social-links a:hover {
+    color: #2c5530;
+}
+
+/* ====================================================== */
+/* ================= Chapter Animation ================= */
+/* ====================================================== */
+.chapter-container {
+    display: none;
+}
+
+.chapter-container.active {
+    display: block;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================================== */
+/* ==================== Responsive Design ============== */
+/* ====================================================== */
+@media (max-width: 1024px) {
+    .main-content { padding: 3rem 4rem; }
+    .sidebar-open .main-content { margin-left: 0; }
+    .chapter-title h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { width: 100%; height: auto; max-height: 80vh; }
+    .main-content { padding: 2rem; }
+    .about-content { padding: 2rem; margin: 1rem; }
+    .sidebar-trigger-btn { top: 15px; left: 15px; }
+    .chapter-title h1 { font-size: 2.2rem; }
+    .moral-section { padding: 2rem; margin: 3rem 0; }
+}
+
+/* ====================================================== */
+/* ===================== Dark Theme ==================== */
+/* ====================================================== */
+body.dark-theme {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-theme .main-content { background: transparent; }
+
+body.dark-theme .chapter-title h1 { color: #e0e0e0; }
+body.dark-theme .chapter-title .subtitle { color: #b0b0b0; }
+body.dark-theme .chapter-title { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+body.dark-theme .highlight {
+    background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-theme .quote {
+    border-left: 4px solid #555;
+    color: #ccc;
+    background: rgba(255,255,255,0.05);
+}
+
+body.dark-theme .chapter-content h3 {
+    color: #e0e0e0;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+body.dark-theme .about-content {
+    background: linear-gradient(135deg, #2d2d44 0%, #1e1e2e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-theme .about-content h2 { color: #e0e0e0; }
+body.dark-theme .about-close { color: #b0b0b0; }
+body.dark-theme .about-close:hover { color: #e0e0e0; }
+
+body.dark-theme .moral-section {
+    background: linear-gradient(135deg, #2d2d44 0%, #1e1e2e 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-theme .moral-section h2 { color: #e0e0e0; }
+body.dark-theme .moral-content { color: #b0b0b0; }
+
+body.dark-theme .sidebar-trigger-btn {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+</style>
+</head>
+<body>
+    <!-- Sidebar Trigger Button -->
+    <button class="sidebar-trigger-btn" id="sidebarTriggerBtn">☰</button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>Atharv's Writings</h1>
+            <p>Exploring love, life, and the human heart</p>
+        </div>
+        
+        <div class="book-list">
+            <div class="book-item active" data-chapter="first-love">
+                <h3>The Gift of First Love</h3>
+                <p>Current Chapter - Digital Connections</p>
+                <div class="book-excerpt">"There is a quiet wonder in life, a subtle, almost imperceptible magic in the way the universe shapes us, and the people it places..."</div>
+            </div>
+            <div class="book-item" data-chapter="whispers-heart">
+                <h3>Whispers of the Heart</h3>
+                <p>Collection of love poems</p>
+                <div class="book-excerpt">"Your voice echoes in the silent chambers of my soul, a melody that time cannot erase..."</div>
+            </div>
+            <div class="book-item" data-chapter="digital-connections">
+                <h3>Digital Connections</h3>
+                <p>Love in the modern age</p>
+                <div class="book-excerpt">"In a world of screens and digital whispers, our hearts found a way to speak the ancient language of love..."</div>
+            </div>
+            <div class="book-item" data-chapter="unspoken-words">
+                <h3>Unspoken Words</h3>
+                <p>Stories of silent affection</p>
+                <div class="book-excerpt">"Sometimes the most profound love stories are written not with words, but with glances that speak volumes..."</div>
+            </div>
+            <div class="book-item" data-chapter="echoes-memory">
+                <h3>Echoes of Memory</h3>
+                <p>Reflections on past loves</p>
+                <div class="book-excerpt">"Memory is a gentle thief, stealing moments from the present to build palaces in the past..."</div>
+            </div>
+            <div class="book-item" data-chapter="language-souls">
+                <h3>The Language of Souls</h3>
+                <p>Spiritual connections in love</p>
+                <div class="book-excerpt">"When two souls recognize each other, no introduction is needed, no words required..."</div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="about-btn" id="aboutBtn">About Atharv</button>
+            <button class="theme-toggle" id="themeToggle">Dark Mode</button>
+        </div>
+    </div>
+
+
+
+
+    
+<body>
+    <div class="main-content">
+        <!-- First Love Chapter -->
+        <div class="chapter-container active" id="first-love">
+            <div class="chapter-title">
+                <h1>The Gift of First Love</h1>
+                <p class="subtitle">A soul-stirring journey of love, gratitude, and destiny</p>
+            </div>
+            
+            <div class="chapter-content">
+                <!-- Opening – The Wonder of Fate -->
+                <p>There is a quiet wonder in life, a subtle, almost imperceptible magic in the way the universe shapes us, and the people it places in our paths. Sometimes, it feels as though <span class="highlight-pink">God himself has whispered</span> into our existence, guiding every heartbeat, every fleeting thought, so that certain souls find each other. My heart knows this truth in a way words can barely capture. My first love, she is not just a memory, she is a <span class="highlight-blue">living presence</span> within me, a melody that plays softly through every corner of my mind.</p>
+
+                <p>Before her, life felt like wandering through vast, mist-covered plains, uncertain and wide, yet quietly searching. Then, like the <span class="highlight-yellow">soft dawn spilling over the horizon</span>, she appeared, first in glimpses, then in heartbeats that resonated with mine. I often ask myself, why do I feel her so deeply? Why does the mere thought of her bring <span class="highlight-pink">warmth and tenderness</span> that seems larger than life itself? Perhaps, in the gentle design of the universe, God understands the intricacies of our hearts in ways we cannot comprehend. And in that quiet orchestration, I found her, my first love, my constant, my blessing.</p>
+                
+                <div class="quote">
+                    "God has a way of placing souls where they belong. True love is not accidental, it is divine."
+                </div>
+                
+                <!-- Meeting Her – The Subtle Beginning -->
+                <p>It all began in a time when the world felt vast and unknown, yet somehow smaller because she was there. Our love did not start with grand gestures or cinematic moments, it began quietly, gently, in the modern way so many connections do today, through online messages, shared laughter, and fleeting glimpses of each other's souls. The thrill of seeing her words appear on the screen, the playful teasing, the long conversations that stretched into the night, all of these felt like tiny sparks illuminating the dark corners of my heart.</p>
+                
+                <p>I remember one evening vividly, her message popped up, simple and unassuming, but it made my chest swell with a joy I had never known. "<span class="highlight-blue">Hey, how was your day?</span>" she asked. And just that small inquiry opened a doorway into her world, and mine. We laughed about silly mistakes, exchanged thoughts about our favorite songs, and slowly, quietly, began learning the language of each other’s hearts. Even pixels and screens could not contain the <span class="highlight-pink">warmth that grew between us</span>, it seeped into every thought, every dream, every quiet moment of reflection.</p>
+
+                <!-- The Essence of Love – Emotional Depth -->
+                <p>Even now, after all this time, my heart carries her with an <span class="highlight-pink">unyielding tenderness</span>. I have come to understand that first love is sacred, it carries a kind of reverence that no passing days can erode. She is more than someone I love, she is someone whose existence has reshaped mine, whose presence has illuminated every corner of my being. My mind, my heart, even the subtle sixth sense we all have, tells me she was meant for me, as I was meant for her. It is as if God, in infinite kindness, placed her into my life, knowing that I would recognize the gift and cherish it for all that it is worth.</p>
+                
+                <div class="quote">
+                    "True love is not about possession. It is about noticing, appreciating, and celebrating the presence of someone in your life with all the quiet intensity of a prayer."
+                </div>
+                
+                <p>The depth of my feelings for her is beyond comparison. No other love, no fleeting attraction, no passing admiration has ever been able to match it. When I see another girl, no matter how beautiful, my mind instinctively drifts to her, to her smile, her laughter, the quiet way she carries herself. Even the smallest detail, a dress, a gesture, a phrase, reminds me of her. True love is anchored not in appearances, but in essence, in the <span class="highlight-blue">soul imprint</span> someone leaves upon your own.</p>
+                
+                <p>I remember the first time I realized just how profoundly I loved her. It was not in a grand declaration, nor in an overwhelming rush of emotion. It was in quiet observation, in noticing the grace in her laughter, the gentle strength in her voice, the way her mere existence seemed to light up the world around her. I thought then, and I think even now, that God has given me a treasure more precious than I could ever deserve. I am endlessly grateful, not for her beauty, not for the joy she brings me in fleeting moments, but for the <span class="highlight-yellow">sheer gift of her existence</span> in my life.</p>
+                
+                <!-- The Constancy – First Love as a Sacred Bond -->
+                <p>Sometimes, I catch myself lost in daydreams, imagining her, recalling her expressions, her gestures, the small things that make her uniquely her. And in those moments, I realize that my love for her is <span class="highlight-pink">constant, unwavering</span>, and independent of circumstance. Even when I see something new or beautiful, a smile, a dress, a fleeting laugh, my heart cannot help but return to her. That is the nature of true love, it persists, it anchors itself in the soul, and it refuses to be diminished.</p>
+                
+                <p>There were days when distance and silence threatened to cloud my thoughts, yet even in absence, her presence was undeniable. I found myself smiling at memories, whispering prayers of gratitude, and silently wishing her happiness, even if it was beyond my grasp. In this, I learned that love is not about possession, but about <span class="highlight-blue">reverence, patience, and gentle devotion</span>.</p>
+                
+                <!-- Philosophical Musings & Gratitude -->
+                <p>I think often about gratitude, the kind that fills your chest so fully it feels like it might burst. I am grateful for her, yes, but even more so, I am grateful to God for placing her into my life, for guiding me to recognize her, to cherish her, to respect her, for reminding me that some loves are rare, sacred, and must be nurtured with patience, care, and unwavering devotion.</p>
+                
+                <p>Even now, whenever my eyes drift across the world, across faces, across fleeting impressions of beauty, my heart returns to her. Not out of possession, not out of longing, but out of recognition, of a soul whose essence resonates with mine in the most profound ways. That is the gift of first love, <span class="highlight-yellow">eternal and unshakable</span>. In her reflection, I see what life can truly be, a harmony of souls, a dance of gratitude, and a reminder that love in its purest form is timeless.</p>
+                
+                <div class="quote">
+                    "First love is not fleeting. It is the quiet, steady heartbeat that follows you through life, a reminder of what is truly sacred."
+                </div>
+                
+                <!-- Emotional Climax -->
+                <p>Sometimes, I close my eyes and imagine the moments we shared, the laughter spilling in unguarded spaces, the quiet confessions whispered under the night sky, the subtle but profound understanding that our souls were speaking even when our lips were silent. I feel a swell of emotion, a tenderness that is almost sacred, as if I am touching a part of eternity itself through her memory. And in those moments, I know that love is not measured by time or circumstance, but by the depth of connection it leaves in the heart.</p>
+                
+                <p>Every heartbeat carries her <span class="highlight-blue">echo</span>, every passing day leaves a trace of her presence. Even in the mundane, her spirit lingers, an invisible thread that binds past, present, and future into a quiet symphony of <span class="highlight-pink">gratitude, devotion, and wonder</span>. This is what first love teaches, that beauty is not fleeting, that connection is sacred, and that some souls are gifted to us so that we may understand the true essence of living and loving.</p>
+                
+                <!-- Resolution – Eternal Gift -->
+                <p>In the end, I am left with a profound sense of peace, of awe, and of gratitude. My first love is a treasure that time cannot diminish, a flame that no wind can extinguish. She is a reminder that life, with all its chaos and uncertainty, has a way of placing exactly what we need in our path, if only we are attentive, humble, and receptive to the quiet miracles that surround us.</p>
+                
+                <!-- Moral Section -->
+                <div class="moral-section">
+                    <h2>The Moral of This Story</h2>
+                    <div class="moral-content">
+                    "True love is a sacred presence, a quiet flame that endures beyond time and circumstance. It teaches patience, reverence, and gratitude, showing us that some gifts are meant to be cherished forever."
+                </div>
+                <div class="moral-signature">- Atharv</div>
+            </div>
+        </div>
+    </div>
+</div>
+     
+
+   
+<div class="main-content">
+    <!-- Whispers of the Heart Chapter -->
+    <div class="chapter-container" id="whispers-heart">
+        <div class="chapter-title">
+            <h1>Whispers of the Heart</h1>
+            <p class="subtitle">A Collection of Love Poems</p>
+        </div>
+        
+        <div class="chapter-content">
+            <div class="quote">
+                "Your voice echoes in the silent chambers of my soul,<br>
+                A melody that time cannot erase,<br>
+                A whisper that the heart makes whole,<br>
+                In this sacred, timeless space."
+            </div>
+            
+            <p>In the quiet hours when the world sleeps, my heart awakens to the memory of you. In these moments, poetry finds me, weaving words around feelings too profound for ordinary speech.</p>
+            
+            <h3>Eternal Echo</h3>
+            <p>Your laughter rings in silent rooms,<br>
+            A symphony that never ends,<br>
+            Blooming through winter's gloom,<br>
+            On your memory my heart depends.</p>
+            
+            <h3>Digital Heartbeats</h3>
+            <p>Through screens and wires, our souls connect,<br>
+            A modern miracle, pure and true,<br>
+            In this digital age, I did not expect<br>
+            To find a love as ancient as you.</p>
+            
+            <p>Each poem is a fragment of my heart, carefully arranged in verses that attempt to capture what ordinary words cannot. They are love letters to moments we've shared, to feelings that transcend time and space.</p>
+            
+            <div class="quote">
+                "If my heart had words, it would speak in poetry,<br>
+                For only verses can hold the depth of what I feel,<br>
+                Only stanzas can contain this eternal mystery<br>
+                Of a love that is profoundly real."
+            </div>
+            
+            <!-- Moral Section -->
+            <div class="moral-section">
+                <h2>The Moral of This Story</h2>
+                <div class="moral-content">
+                    Poetry teaches us that love speaks in a language beyond words, in rhythms, silences, and spaces between lines. It reminds us that the heart's deepest truths are often expressed not through declarations, but through the quiet art of noticing, feeling, and honoring the beauty in another soul.
+                </div>
+                <div class="moral-signature">- Atharv</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Digital Connections Chapter -->
+    <div class="chapter-container" id="digital-connections">
+        <div class="chapter-title">
+            <h1>Digital Connections</h1>
+            <p class="subtitle">Love in the Modern Age</p>
+        </div>
+        
+        <div class="chapter-content">
+            <p>We live in an era where love letters have been replaced by text messages, where courtship happens through screens, and where hearts connect across digital highways. Yet, despite the modern medium, the essence of love remains unchanged.</p>
+            
+            <p>"In a world of screens and digital whispers, our hearts found a way to speak the ancient language of love. Through pixels and Wi-Fi signals, we discovered a connection that felt both new and timeless, as if we were simply using modern tools to express what lovers have always felt."</p>
+            
+            <h3>The Paradox of Digital Intimacy</h3>
+            <p>There's a unique intimacy that develops in digital spaces. The distance somehow makes us braver, more willing to share our deepest thoughts and vulnerabilities. In the safety of text-based conversations, we reveal parts of ourselves that might otherwise remain hidden.</p>
+            
+            <p>I remember our first video call, how nervous we both were, how the connection kept breaking, yet how magical it felt to finally see your smile after months of texting. That pixelated image of you felt more real than anything I had ever known.</p>
+            
+            <h3>Love Without Physical Touch</h3>
+            <p>We learned to express affection through words, through shared playlists, through watching the same movie while miles apart. We discovered that love isn't just about physical proximity, it's about emotional presence.</p>
+            
+            <div class="quote">
+                "They say long-distance relationships are hard, and they are. But they also teach you that love isn't measured in miles but in moments, in the way your heart leaps when you see their name on your screen, in the comfort of knowing they're thinking of you even when you're apart."
+            </div>
+            
+            <p>Our digital love story proved that technology doesn't diminish romance, it simply gives it new forms of expression. The heart still beats the same way, whether it's falling in love across a crowded room or across a fiber-optic cable.</p>
+            
+            <!-- Moral Section -->
+            <div class="moral-section">
+                <h2>The Moral of This Story</h2>
+                <div class="moral-content">
+                    Technology may change how we connect, but it cannot alter the fundamental nature of love. True connection transcends physical presence and finds its home in the spaces between words, in the sincerity of shared vulnerability, and in the courage to be authentically seen across any distance.
+                </div>
+                <div class="moral-signature">- Atharv</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unspoken Words Chapter -->
+    <div class="chapter-container" id="unspoken-words">
+        <div class="chapter-title">
+            <h1>Unspoken Words</h1>
+            <p class="subtitle">Stories of silent affection</p>
+        </div>
+        <div class="chapter-content">
+            <p>Some love does not need to be declared; it is written in the lingering glances, the gentle gestures, and the moments that pass unnoticed by the world. These unspoken words become a silent symphony, a quiet testament to hearts that understand each other without saying a thing.</p>
+        </div>
+    </div>
+
+    <!-- Echoes of Memory Chapter -->
+    <div class="chapter-container" id="echoes-memory">
+        <div class="chapter-title">
+            <h1>Echoes of Memory</h1>
+            <p class="subtitle">Reflections on past loves</p>
+        </div>
+        <div class="chapter-content">
+            <p>Memory is a soft echo that carries fragments of past affection. A laugh, a touch, a whispered promise—each lingers like a delicate thread, reminding us of the beauty of what once was and shaping the way we love in the present.</p>
+        </div>
+    </div>
+
+    <!-- The Language of Souls Chapter -->
+    <div class="chapter-container" id="language-souls">
+        <div class="chapter-title">
+            <h1>The Language of Souls</h1>
+            <p class="subtitle">Spiritual connections in love</p>
+        </div>
+        <div class="chapter-content">
+            <p>When two souls recognize each other, words are unnecessary. In their presence, time slows, hearts synchronize, and a quiet understanding blooms. Love becomes a language beyond speech, felt deeply in every glance, every shared silence, every heartbeat.</p>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="about-modal" id="aboutModal">
+        <div class="about-content">
+            <button class="about-close" id="aboutClose">&times;</button>
+            <h2>About Atharv</h2>
+            <p>Hello, I'm Atharv - a writer and thinker exploring the profound depths of human emotions, relationships, and spiritual connections. My writing focuses on love in its purest forms, the digital age's impact on our connections, and the eternal questions of the heart.</p>
+            
+            <p>Through my works like "Digital Connections," "Whispers of the Heart," and "The Language of Souls," I attempt to capture those fleeting moments of beauty and connection that define our human experience.</p>
+            
+            <div class="about-signature">
+                <p>With gratitude,</p>
+                <p>Atharv</p>
+            </div>
+
+            <p>Connect with me on social media and stay in touch:</p>  
+
+            <ul class="social-links">  
+                <li><a href="https://www.instagram.com/_atharv_i.am__/?igsh=ZXBib2x3bmtranVx" target="_blank">Instagram</a></li>  
+                <li><a href="https://www.facebook.com/share/16TzeWtxos/" target="_blank">Facebook</a></li>  
+                <li><a href="https://t.me/Atharv_ElysionX" target="_blank">Telegram</a></li>  
+                <li><a href="mailto:royatharv552006@gmail.com" target="_blank">Email</a></li>  
+            </ul>  
+        </div>  
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+</div>
+    
+<script>
+    // --------------------------
+    // DOM Elements
+    // --------------------------
+    const themeToggle = document.getElementById('themeToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarTriggerBtn = document.getElementById('sidebarTriggerBtn');
+    const progressBar = document.getElementById('progressBar');
+    const bookItems = document.querySelectorAll('.book-item');
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutClose = document.getElementById('aboutClose');
+    const chapterContainers = document.querySelectorAll('.chapter-container');
+
+    // --------------------------
+    // Sidebar Auto-Hide Variables
+    // --------------------------
+    let sidebarTimeout;
+    const SIDEBAR_HIDE_DELAY = 2000; // 2 seconds of inactivity
+    const TRIGGER_HIDE_DELAY = 3000; // 3 seconds for trigger button
+    let sidebarActive = false; // Tracks interaction
+
+    // --------------------------
+    // Show / Hide Sidebar
+    // --------------------------
+    function showSidebar() {
+        sidebar.classList.add('visible');
+        document.body.classList.add('sidebar-open');
+        clearTimeout(sidebarTimeout);
+    }
+
+    function hideSidebar() {
+        sidebar.classList.remove('visible');
+        document.body.classList.remove('sidebar-open');
+    }
+
+    function startSidebarAutoHide() {
+        clearTimeout(sidebarTimeout);
+        sidebarTimeout = setTimeout(() => {
+            if (!sidebarActive) hideSidebar();
+        }, SIDEBAR_HIDE_DELAY);
+    }
+
+    // --------------------------
+    // Sidebar Interaction
+    // --------------------------
+    sidebar.addEventListener('mouseenter', () => {
+        sidebarActive = true;
+        clearTimeout(sidebarTimeout);
+    });
+
+    sidebar.addEventListener('mouseleave', () => {
+        sidebarActive = false;
+        startSidebarAutoHide();
+    });
+
+    sidebar.addEventListener('click', () => {
+        sidebarActive = true;
+        clearTimeout(sidebarTimeout);
+    });
+
+    sidebar.addEventListener('scroll', () => {
+        sidebarActive = true;
+        clearTimeout(sidebarTimeout);
+        setTimeout(() => {
+            sidebarActive = false;
+            startSidebarAutoHide();
+        }, SIDEBAR_HIDE_DELAY);
+    });
+
+    // --------------------------
+    // Sidebar Trigger Button
+    // --------------------------
+    sidebarTriggerBtn.addEventListener('click', () => {
+        if (sidebar.classList.contains('visible')) {
+            hideSidebar();
+        } else {
+            showSidebar();
+            startSidebarAutoHide();
+        }
+
+        // Show trigger immediately and hide after delay
+        sidebarTriggerBtn.classList.remove('hidden');
+        setTimeout(() => sidebarTriggerBtn.classList.add('hidden'), TRIGGER_HIDE_DELAY);
+    });
+
+    // Show trigger again when mouse moves near top-left
+    document.addEventListener('mousemove', (e) => {
+        if (e.clientX < 100 && e.clientY < 100) {
+            sidebarTriggerBtn.classList.remove('hidden');
+        }
+    });
+
+    // --------------------------
+    // Theme Toggle Logic
+    // --------------------------
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        themeToggle.textContent = document.body.classList.contains('dark-theme') 
+            ? 'Light Mode' 
+            : 'Dark Mode';
+    });
+
+    // --------------------------
+    // About Modal Logic
+    // --------------------------
+    aboutBtn.addEventListener('click', () => {
+        aboutModal.classList.add('visible');
+        hideSidebar();
+    });
+
+    aboutClose.addEventListener('click', () => aboutModal.classList.remove('visible'));
+
+    aboutModal.addEventListener('click', (e) => {
+        if (e.target === aboutModal) aboutModal.classList.remove('visible');
+    });
+
+    // --------------------------
+    // Reading Progress Bar
+    // --------------------------
+    window.addEventListener('scroll', () => {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight - windowHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const progress = (scrollTop / documentHeight) * 100;
+        progressBar.style.width = progress + '%';
+    });
+
+    // --------------------------
+    // Book Item Click Logic
+    // --------------------------
+    bookItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const chapterId = item.getAttribute('data-chapter');
+
+            // Update active item
+            bookItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            // Switch visible chapter
+            chapterContainers.forEach(container => container.classList.remove('active'));
+            const selectedChapter = document.getElementById(chapterId);
+            if (selectedChapter) {
+                selectedChapter.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            hideSidebar();
+        });
+    });
+
+    // --------------------------
+    // Initialize on Page Load
+    // --------------------------
+    window.addEventListener('load', () => {
+        // Show sidebar briefly on load
+        showSidebar();
+        setTimeout(() => hideSidebar(), SIDEBAR_HIDE_DELAY);
+
+        // Hide trigger button after delay
+        setTimeout(() => sidebarTriggerBtn.classList.add('hidden'), TRIGGER_HIDE_DELAY);
+
+        // Set first chapter as active by default
+        if (bookItems.length > 0) bookItems[0].classList.add('active');
+        if (chapterContainers.length > 0) chapterContainers[0].classList.add('active');
+    });
+</script>
+</body>
+</html>
