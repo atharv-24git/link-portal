@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Library — Eternal Moments</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFEFF3;             /* soft pink background */
+  --panel:#F0F8FF;          /* soft light blue panels */
+  --accent:#FF8FA8;         /* pastel coral/pink accent */
+  --accent-alt:#FFD6E3;     /* softer pink gradient */
+  --text:#2a1f23;           /* soft dark text */
+  --muted:#aa9cae;          /* gentle muted text */
+  --radius:16px;
+  --shadow:0 6px 20px rgba(42,31,35,0.05);
+  --hover-shadow:0 12px 28px rgba(42,31,35,0.08);
+  --transition:0.35s ease-in-out;
+}
+
+body{
+  margin:0;
+  padding:24px;
+  background:var(--bg);
+  font-family:Inter,Arial;
+  color:var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+
+header{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  margin-bottom:32px;
+}
+
+.logo{
+  width:60px;
+  height:60px;
+  border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--panel),var(--accent-alt));
+  display:grid;
+  place-items:center;
+  font-family:'Playfair Display';
+  font-size:1.6rem;
+  font-weight:700;
+  color:white;
+  box-shadow:var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.logo:hover{
+  transform: scale(1.08);
+  box-shadow:var(--hover-shadow);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap:24px;
+}
+
+.book{
+  background:var(--panel);
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.book:hover{
+  transform: translateY(-6px);
+  box-shadow:var(--hover-shadow);
+  background:linear-gradient(160deg,var(--panel),var(--accent-alt));
+}
+
+.book h3{
+  margin:0 0 10px 0;
+  font-family:'Playfair Display';
+  font-weight:700;
+  font-size:1.28rem;
+  color:var(--text);
+}
+
+.meta{
+  color:var(--muted);
+  font-size:0.92rem;
+  line-height:1.55;
+}
+
+.read-btn{
+  display:inline-block;
+  margin-top:12px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-alt));
+  color:white;
+  padding:10px 16px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:500;
+  font-size:0.96rem;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.read-btn:hover{
+  transform: translateY(-3px);
+  box-shadow:0 8px 22px rgba(0,0,0,0.12);
+  background:linear-gradient(90deg,#FFD6E3, #FFB6C1); /* softer pastel pink hover */
+}
+
+/* Footer-style author line */
+.footer-line{
+  text-align:center;
+  margin-top:60px;
+  color:var(--muted);
+  font-size:0.85rem;
+  font-family:Inter, Arial;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">EM</div>
+  <div>
+    <h1 style="margin:0;font-family:'Playfair Display'">Library</h1>
+    <div class="meta">Chapters, essays, and collections</div>
+  </div>
+</header>
+
+<section class="grid">
+<article class="book">
+    <h3>The Gift of First Love</h3>
+    <div class="meta">A Journey Through Tender Beginnings — Chapter I</div>
+    <p class="meta" style="margin-top:8px">Exploring the sweetness and depth of first love, and the memories it leaves behind.</p>
+    <a class="read-btn" href="The-Giftof-FirstLove.html?chapter=gift">Read</a>
+</article>
+
+<article class="book">
+    <h3>Whispers of the Heart</h3>
+    <div class="meta">A Symphony of Love and Silence — Chapter II</div>
+    <p class="meta" style="margin-top:8px">Quiet confessions, spiritual whispers, and the unspoken language of the heart.</p>
+    <a class="read-btn" href="Whispers-of-theHeart.html?chapter=whispers">Read</a>
+</article>
+
+  <article class="book">
+    <h3>Upcoming Works</h3>
+    <div class="meta">A collection in progress</div>
+    <p class="meta" style="margin-top:8px; font-style:italic; color:#b999b3;">
+      ✨ New stories are on their way… stay tuned for chapters that will touch the heart.
+    </p>
+  </article>
+</section>
+
+<!-- Footer-style author line -->
+<p class="footer-line">
+  Capturing life's quiet moments in words
+</p>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whispers of the Heart</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Cormorant Garamond', serif;
+        background: #faf4f2;
+        color: #333;
+        line-height: 1.9;
+    }
+
+    .container {
+        max-width: 780px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.4rem;
+        color: #444;
+        margin: 0;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    header p {
+        font-size: 1rem;
+        color: #777;
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .story h2, .chapter-title h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.9rem;
+        text-align: center;
+        color: #222;
+        margin-bottom: 30px;
+    }
+
+    .story p, .chapter-content p {
+        font-size: 1.05rem;
+        color: #555;
+        margin: 18px 0;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.3px;
+        line-height: 1.95;
+    }
+
+    .story p::before, .chapter-content p::before {
+        content: '';
+        position: absolute;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(255,240,220,0.5), rgba(255,240,220,0));
+        transition: left 1s ease;
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    .story p.show-highlight, .chapter-content p.show-highlight::before {
+        left: 0;
+    }
+
+    .story p span, .chapter-content p span {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+    }
+
+    .quote {
+        font-style: italic;
+        font-size: 1.05rem;
+        color: #444;
+        margin: 25px 0;
+        text-align: center;
+        border-left: 4px solid #e0c8b0;
+        padding-left: 15px;
+        background: #fff8f3;
+        border-radius: 5px;
+    }
+
+    .moral-section {
+        margin-top: 50px;
+    }
+
+    .moral-section h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.7rem;
+        color: #222;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .moral-content {
+        font-size: 1.05rem;
+        color: #555;
+        text-align: center;
+        margin-bottom: 12px;
+        line-height: 1.9;
+    }
+
+    .moral-signature {
+        font-size: 0.95rem;
+        color: #777;
+        text-align: center;
+        font-style: italic;
+    }
+
+    h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        margin-top: 25px;
+        color: #333;
+    }
+
+    @media (max-width: 600px) {
+        header h1 { font-size: 2rem; }
+        .story h2, .chapter-title h1 { font-size: 1.5rem; }
+        .story p, .chapter-content p, .moral-content { font-size: 1rem; line-height: 1.85; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Whispers of the Heart</h1>
+      <p>A Collection of Love Poems</p>
+    </header>
+
+    <div class="story">
+      <div class="main-content">  
+        <div class="chapter-container" id="whispers-heart">  
+            <div class="chapter-title">  
+                <p class="subtitle">A Collection of Love Poems</p>  
+            </div>  
+              
+            <div class="chapter-content">  
+                <div class="quote">  
+                    "Your voice echoes in the silent chambers of my soul,<br>  
+                    A melody that time cannot erase,<br>  
+                    A whisper that the heart makes whole,<br>  
+                    In this sacred, timeless space."  
+                </div>  
+                  
+                <p>In the quiet hours, when the world is draped in slumber, my heart stirs awake, tracing the contours of memories where you reside. Every sigh of wind, every flicker of candlelight seems to speak your name. Here, poetry arrives unbidden, wrapping feelings too delicate, too vast for ordinary speech.</p>  
+                  
+                <h3>Eternal Echo</h3>  
+                <p>Your laughter rings in silent rooms,<br>  
+                A symphony that never fades,<br>  
+                Blooming through winter's gloom,<br>  
+                On your memory my heart parades.<br>  
+                <br>  
+                Even in shadows where hope seems thin,<br>  
+                Your light lingers, soft and near,<br>  
+                Guiding me through nights within,<br>  
+                Whispering that love conquers fear.</p>  
+                  
+                <h3>Digital Heartbeats</h3>  
+                <p>Through screens and wires, our souls entwine,<br>  
+                A modern miracle, exquisitely fine,<br>  
+                In the digital hum, I found you there,<br>  
+                A love that feels timeless, rare.<br>  
+                <br>  
+                Your messages, like secret streams,<br>  
+                Flow into my quiet mind,<br>  
+                Building castles of shared dreams,<br>  
+                Leaving lonely shadows behind.</p>  
+      
+                <h3>Silent Conversations</h3>  
+                <p>Sometimes we speak without words,<br>  
+                Eyes locked in unspoken verse,<br>  
+                Hands brushing as if by chance,<br>  
+                Each moment a universe.<br>  
+                <br>  
+                Time bends in these fleeting days,<br>  
+                Seasons shift, yet you remain,<br>  
+                In every dawn's soft, golden rays,<br>  
+                In every drop of summer rain.</p>  
+      
+                <p>Each poem is a fragment of my heart, arranged meticulously, striving to capture what ordinary words cannot. They are love letters to our shared moments, letters that defy time and space, echoing feelings that linger long after silence falls.</p>  
+                  
+                <div class="quote">  
+                    "If my heart had words, it would speak in poetry,<br>  
+                    For only verses can hold the depth of what I feel,<br>  
+                    Only stanzas can contain this eternal mystery<br>  
+                    Of a love that is profoundly real."  
+                </div>  
+                  
+                <div class="moral-section">  
+                    <h2>The Moral of This Story</h2>  
+                    <div class="moral-content">  
+                        Love often speaks most truly in silence and in moments between words.  
+                    </div>  
+                    <div class="moral-signature">- Atharv</div>  
+                </div>  
+            </div>  
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lines = document.querySelectorAll('.story p');
+    lines.forEach((line, index) => {
+      setTimeout(() => {
+        line.classList.add('show-highlight');
+      }, index * 600);
+    });
+  </script>
+
+</body>
+</html>
