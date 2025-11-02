@@ -3,158 +3,332 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Library — Eternal Moments</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<title>The Atharv Library — Eternal Moments</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+/* --- 1. Variables & Global Reset (SUPER Soft & Light Palette) --- */
 :root{
-  --bg:#FFEFF3;             /* soft pink background */
-  --panel:#F0F8FF;          /* soft light blue panels */
-  --accent:#FF8FA8;         /* pastel coral/pink accent */
-  --accent-alt:#FFD6E3;     /* softer pink gradient */
-  --text:#2a1f23;           /* soft dark text */
-  --muted:#aa9cae;          /* gentle muted text */
-  --radius:16px;
-  --shadow:0 6px 20px rgba(42,31,35,0.05);
-  --hover-shadow:0 12px 28px rgba(42,31,35,0.08);
-  --transition:0.35s ease-in-out;
+  --color-text-dark: #5c4b5d;      /* Gentle Plum/Charcoal */
+  --color-text-light: #a89aa9;    /* Dusty Lavender/Grey */
+  --color-background: #ffffff;     /* Pure White */
+  --color-panel: #fcfcfc;          /* Off-White for Cards (Softer than pure white) */
+  --color-accent-start: #e9d8f4;   /* Very Light Lavender (Softer) */
+  --color-accent-end: #f4e3f8;     /* Very Light Dusty Pink (Softer) */
+  --color-button: #d0b8e9;         /* Muted Medium Lavender for soft contrast */
+  --color-button-text: #5c4b5d;    /* Dark text on light button */
+  --color-highlight-soft: #fcf0fa; /* VERY Light Pink for highlighted text */
+  --radius-xl: 30px;
+  --radius-lg: 18px;
+  --shadow-soft: 0 10px 40px rgba(92, 75, 93, 0.04);
+  --shadow-hover: 0 18px 50px rgba(92, 75, 93, 0.1);
+  --transition-smooth: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother, elegant ease */
 }
 
 body{
   margin:0;
-  padding:24px;
-  background:var(--bg);
-  font-family:Inter,Arial;
-  color:var(--text);
-  transition: background var(--transition), color var(--transition);
+  padding:60px 24px 100px;
+  background:var(--color-background);
+  font-family:'Poppins', sans-serif;
+  color:var(--color-text-dark);
+  line-height:1.75;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
 }
 
-header{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  margin-bottom:32px;
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* --- 2. Header & Branding --- */
+.header-container{
+  max-width:1000px;
+  margin:0 auto 80px;
+  text-align:center;
+}
+
+.logo-container{
+    display:inline-block;
+    position:relative;
+    width:85px;
+    height:85px;
+    margin-bottom:20px;
 }
 
 .logo{
-  width:60px;
-  height:60px;
-  border-radius:var(--radius);
-  background:linear-gradient(135deg,var(--panel),var(--accent-alt));
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  /* Ultra-soft gradient */
+  background:linear-gradient(135deg, var(--color-accent-start) 0%, var(--color-accent-end) 100%);
   display:grid;
   place-items:center;
-  font-family:'Playfair Display';
-  font-size:1.6rem;
+  font-family:'Cormorant Garamond', serif;
+  font-size:2.4rem;
   font-weight:700;
-  color:white;
-  box-shadow:var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
+  color:var(--color-text-dark); /* Darker text on light background for premium feel */
+  box-shadow:0 0 0 8px rgba(255, 255, 255, 0.9), var(--shadow-soft);
+  transition: transform var(--transition-smooth);
+  box-sizing:border-box;
 }
 
 .logo:hover{
-  transform: scale(1.08);
-  box-shadow:var(--hover-shadow);
+  transform: scale(1.04);
 }
 
-.grid{
+.header-title{
+  margin:0;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:500; /* Lighter weight for elegance */
+  font-size:3.5rem;
+  line-height:1.1;
+  color:var(--color-text-dark);
+}
+
+.header-subtitle{
+  color:var(--color-text-light);
+  font-size:1.2rem;
+  font-style:italic;
+  font-weight:300;
+  margin-top:10px;
+  letter-spacing:0.5px;
+  /* Removed the dash, using CSS to separate if needed elsewhere, but here it's natural */
+}
+
+/* --- 3. Grid Layout (Refined) --- */
+.grid-container{
+  max-width:1000px;
+  margin:0 auto;
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
-  gap:24px;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap:45px;
 }
 
+/* --- 4. Book Card Styling (Softer & More Luxurious) --- */
 .book{
-  background:var(--panel);
-  padding:22px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  background:var(--color-panel);
+  padding:35px;
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(233, 216, 244, 0.5); /* Ultra-subtle border */
+  transition: all var(--transition-smooth);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Accent Bar (instead of ribbon for cleaner look) */
+.book::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Subtle top accent */
+    background: linear-gradient(90deg, var(--color-accent-start), var(--color-accent-end));
+    transition: height var(--transition-smooth);
 }
 
 .book:hover{
-  transform: translateY(-6px);
-  box-shadow:var(--hover-shadow);
-  background:linear-gradient(160deg,var(--panel),var(--accent-alt));
+  transform: translateY(-12px);
+  box-shadow:var(--shadow-hover);
 }
 
-.book h3{
-  margin:0 0 10px 0;
-  font-family:'Playfair Display';
-  font-weight:700;
-  font-size:1.28rem;
-  color:var(--text);
+.book:hover::before{
+    height: 8px; /* Slightly thicker on hover */
 }
 
-.meta{
-  color:var(--muted);
-  font-size:0.92rem;
-  line-height:1.55;
+.book-title{
+  margin:0 0 8px 0;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:2rem;
+  color:var(--color-text-dark);
+  line-height:1.2;
 }
+
+.book-category{
+  color:var(--color-text-light);
+  font-size:0.9rem;
+  margin-bottom:25px;
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  /* Instead of a dash, a subtle separator */
+  position: relative;
+  display: inline-block;
+}
+
+.book-category::after {
+    content: '•'; /* Gentle dot separator */
+    color: var(--color-text-light);
+    margin-left: 8px;
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+.book-category:last-of-type::after {
+    content: none; /* No dot after the last one if you had multiple */
+}
+
+
+.book-excerpt{
+  margin-top:0;
+  font-size:1rem;
+  color:var(--color-text-dark);
+  opacity:0.9;
+  flex-grow:1;
+  font-weight:300;
+}
+
+/* Styling for bolded text within excerpts */
+.book-excerpt strong{
+  font-weight: 600; /* Keep it bold */
+  color: var(--color-text-dark); /* Keep main text color */
+  background-color: var(--color-highlight-soft); /* Soft highlight */
+  padding: 2px 5px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(244, 227, 248, 0.3); /* Subtle depth */
+}
+
 
 .read-btn{
   display:inline-block;
-  margin-top:12px;
-  background:linear-gradient(90deg,var(--accent),var(--accent-alt));
-  color:white;
-  padding:10px 16px;
-  border-radius:16px;
-  text-decoration:none;
-  font-weight:500;
-  font-size:0.96rem;
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  margin-top:30px;
+  align-self:flex-start;
+  background:var(--color-button);
+  color:var(--color-button-text);
+  padding:16px 32px;
+  border-radius:var(--radius-lg);
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:1px;
+  box-shadow:0 6px 18px rgba(208, 184, 233, 0.3);
+  transition: all var(--transition-smooth);
+  text-align:center;
+  min-width:180px;
 }
 
 .read-btn:hover{
-  transform: translateY(-3px);
-  box-shadow:0 8px 22px rgba(0,0,0,0.12);
-  background:linear-gradient(90deg,#FFD6E3, #FFB6C1); /* softer pastel pink hover */
+  transform: scale(1.02);
+  background: #c5a9df; /* Slightly darker lavender on hover */
+  box-shadow:0 8px 25px rgba(208, 184, 233, 0.5);
 }
 
-/* Footer-style author line */
+/* Special styling for "Upcoming Works" (Even softer grey/lavender) */
+.upcoming{
+  background-color: #f7f7f9; /* Very light cool-grey background */
+  border-color: rgba(200, 200, 220, 0.5);
+  text-align:center;
+}
+
+.upcoming::before{
+    background: linear-gradient(90deg, #d8d8e5, #c0c0d8); /* Soft cool gradient */
+}
+
+.upcoming p{
+  font-style:normal;
+  color:#b0b0c5;
+  font-size:1.05rem;
+  font-weight:300;
+  margin-top:25px;
+  margin-bottom:0;
+}
+
+.upcoming .book-category{
+    color: #c0c0d8;
+}
+
+.upcoming .book-title{
+    color: #7b7999;
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Custom button for Coming Soon */
+.upcoming .read-btn-static{
+    background: #e0e0e9;
+    color: #b0b0c5;
+    box-shadow: 0 4px 12px rgba(192, 192, 216, 0.3);
+    cursor: default;
+    opacity: 0.9;
+    pointer-events: none;
+    transition: none;
+    transform: none;
+}
+
+/* --- 5. Footer --- */
 .footer-line{
   text-align:center;
-  margin-top:60px;
-  color:var(--muted);
-  font-size:0.85rem;
-  font-family:Inter, Arial;
+  margin-top:120px;
+  padding-top:40px;
+  border-top:1px solid rgba(168, 154, 169, 0.1); /* Lighter divider */
+  color:var(--color-text-light);
+  font-size:0.95rem;
+  font-family:'Poppins', sans-serif;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  font-weight:300;
+  letter-spacing:0.5px;
+}
+
+.footer-line strong {
+    font-weight: 600;
+    color: var(--color-text-dark);
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">EM</div>
-  <div>
-    <h1 style="margin:0;font-family:'Playfair Display'">Library</h1>
-    <div class="meta">Chapters, essays, and collections</div>
+<div class="header-container">
+  <div class="logo-container">
+    <div class="logo">A + R</div>
   </div>
-</header>
+  <h1 class="header-title">The Atharv Library</h1>
+  <div class="header-subtitle">A collection of essays, poems, and stories for my jaan, Rukmini.</div>
+</div>
 
-<section class="grid">
+<section class="grid-container">
+
 <article class="book">
-    <h3>The Gift of First Love</h3>
-    <div class="meta">A Journey Through Tender Beginnings — Chapter I</div>
-    <p class="meta" style="margin-top:8px">Exploring the sweetness and depth of first love, and the memories it leaves behind.</p>
-    <a class="read-btn" href="The-Giftof-FirstLove.html?chapter=gift">Read</a>
+    <div>
+        <h3 class="book-title">The Third of June: An Eternity</h3>
+        <div class="book-category">A Romantic Essay & Memoir</div>
+        <p class="book-excerpt">
+            <span class="highlight-text">A date marked by fate.</span> A deeply personal and reflective essay chronicling the precise moments our journey began (June 3rd, 2025). Atharv explores how a single meeting redefined his world and introduced him to his forever.
+        </p>
+    </div>
+    <a class="read-btn" href="The-Third-of-June.html?book=june">Read The Memoir</a>
 </article>
 
 <article class="book">
-    <h3>Whispers of the Heart</h3>
-    <div class="meta">A Symphony of Love and Silence — Chapter II</div>
-    <p class="meta" style="margin-top:8px">Quiet confessions, spiritual whispers, and the unspoken language of the heart.</p>
-    <a class="read-btn" href="Whispers-of-theHeart.html?chapter=whispers">Read</a>
+    <div>
+        <h3 class="book-title">My World, My Peace: Rukmini</h3>
+        <div class="book-category">A Collection of Loving Poems</div>
+        <p class="book-excerpt">
+            A symphony of verses dedicated entirely to <span class="highlight-text">Rukmini</span>—my peace, my love, my world. These poems capture the serenity and boundless joy found in her presence, using the language of the heart.
+        </p>
+    </div>
+    <a class="read-btn" href="My-World-My-Peace.html?book=peace">Begin Reading</a>
 </article>
 
-  <article class="book">
-    <h3>Upcoming Works</h3>
-    <div class="meta">A collection in progress</div>
-    <p class="meta" style="margin-top:8px; font-style:italic; color:#b999b3;">
-      ✨ New stories are on their way… stay tuned for chapters that will touch the heart.
-    </p>
+<article class="book upcoming">
+    <div>
+      <h3 class="book-title">The Chapters of Jaan</h3>
+      <div class="book-category">A Romantic Novella in Progress</div>
+      <p>
+        A new, longer work is currently being written, exploring the profound intimacy and quiet understanding that connects two souls. More heartfelt chapters are on their way. Stay tuned, jaan.
+      </p>
+    </div>
+    <div class="read-btn read-btn-static">Coming Soon...</div>
   </article>
+
 </section>
 
-<!-- Footer-style author line -->
 <p class="footer-line">
-  Capturing life's quiet moments in words
+  Crafted with eternal love by <strong>Atharv</strong>. Capturing life's quiet moments in words, always for <strong>Rukmini</strong>.
 </p>
 
 </body>
